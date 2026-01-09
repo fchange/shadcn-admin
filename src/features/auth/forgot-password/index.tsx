@@ -1,44 +1,32 @@
 import { Link } from '@tanstack/react-router'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
 import { AuthLayout } from '../auth-layout'
-import { ForgotPasswordForm } from './components/forgot-password-form'
 
 export function ForgotPassword() {
   return (
     <AuthLayout>
-      <Card className='gap-4'>
-        <CardHeader>
-          <CardTitle className='text-lg tracking-tight'>
-            Forgot Password
-          </CardTitle>
-          <CardDescription>
-            Enter your registered email and <br /> we will send you a link to
-            reset your password.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ForgotPasswordForm />
-        </CardContent>
-        <CardFooter>
-          <p className='mx-auto px-8 text-center text-sm text-balance text-muted-foreground'>
-            Don't have an account?{' '}
-            <Link
-              to='/sign-up'
-              className='underline underline-offset-4 hover:text-primary'
-            >
-              Sign up
-            </Link>
-            .
-          </p>
-        </CardFooter>
-      </Card>
+      <div className='card bg-base-100 shadow'>
+        <div className='card-body gap-4'>
+          <div>
+            <h2 className='text-lg font-semibold'>Forgot password</h2>
+            <p className='text-sm text-base-content/70'>
+              We&apos;ll send you a reset link if the email exists.
+            </p>
+          </div>
+          <form className='space-y-3'>
+            <input
+              type='email'
+              placeholder='name@example.com'
+              className='input input-bordered w-full'
+            />
+            <button type='button' className='btn btn-primary w-full'>
+              Send reset link
+            </button>
+          </form>
+          <Link to='/sign-in' className='link link-primary text-sm'>
+            Back to sign in
+          </Link>
+        </div>
+      </div>
     </AuthLayout>
   )
 }

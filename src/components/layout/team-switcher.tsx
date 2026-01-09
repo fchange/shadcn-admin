@@ -1,19 +1,9 @@
 import * as React from 'react'
 import { ChevronsUpDown, Plus } from 'lucide-react'
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
 } from '@/components/ui/sidebar'
 
 type TeamSwitcherProps = {
@@ -25,61 +15,62 @@ type TeamSwitcherProps = {
 }
 
 export function TeamSwitcher({ teams }: TeamSwitcherProps) {
-  const { isMobile } = useSidebar()
   const [activeTeam, setActiveTeam] = React.useState(teams[0])
 
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <SidebarMenuButton
-              size='lg'
-              className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
-            >
-              <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground'>
-                <activeTeam.logo className='size-4' />
-              </div>
-              <div className='grid flex-1 text-start text-sm leading-tight'>
-                <span className='truncate font-semibold'>
-                  {activeTeam.name}
-                </span>
-                <span className='truncate text-xs'>{activeTeam.plan}</span>
-              </div>
-              <ChevronsUpDown className='ms-auto' />
-            </SidebarMenuButton>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            className='w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg'
-            align='start'
-            side={isMobile ? 'bottom' : 'right'}
-            sideOffset={4}
+        <div className='dropdown w-full'>
+          <SidebarMenuButton
+            asChild
+            className='w-full justify-between rounded-lg bg-base-200/60 px-3 py-2'
           >
-            <DropdownMenuLabel className='text-xs text-muted-foreground'>
-              Teams
-            </DropdownMenuLabel>
-            {teams.map((team, index) => (
-              <DropdownMenuItem
-                key={team.name}
-                onClick={() => setActiveTeam(team)}
-                className='gap-2 p-2'
-              >
-                <div className='flex size-6 items-center justify-center rounded-sm border'>
-                  <team.logo className='size-4 shrink-0' />
+            <button type='button' className='w-full'>
+              <div className='flex items-center gap-3'>
+                <div className='flex size-8 items-center justify-center rounded-lg bg-primary text-primary-content'>
+                  <activeTeam.logo className='size-4' />
                 </div>
-                {team.name}
-                <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
-              </DropdownMenuItem>
-            ))}
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className='gap-2 p-2'>
-              <div className='flex size-6 items-center justify-center rounded-md border bg-background'>
-                <Plus className='size-4' />
+                <div className='grid flex-1 text-start text-sm leading-tight'>
+                  <span className='truncate font-semibold'>
+                    {activeTeam.name}
+                  </span>
+                  <span className='truncate text-xs text-base-content/70'>
+                    {activeTeam.plan}
+                  </span>
+                </div>
+                <ChevronsUpDown className='ms-auto size-4 opacity-70' />
               </div>
-              <div className='font-medium text-muted-foreground'>Add team</div>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+            </button>
+          </SidebarMenuButton>
+          <ul className='menu dropdown-content z-[1] mt-2 w-60 rounded-box bg-base-100 p-2 shadow'>
+            <li className='menu-title text-xs'>Teams</li>
+            {teams.map((team, index) => (
+              <li key={team.name}>
+                <button
+                  type='button'
+                  onClick={() => setActiveTeam(team)}
+                  className='flex items-center gap-2'
+                >
+                  <span className='flex size-6 items-center justify-center rounded-md border border-base-200'>
+                    <team.logo className='size-4 shrink-0' />
+                  </span>
+                  {team.name}
+                  <span className='ms-auto text-xs text-base-content/60'>
+                    ⌘{index + 1}
+                  </span>
+                </button>
+              </li>
+            ))}
+            <li className='mt-1 border-t border-base-200 pt-1'>
+              <button type='button' className='flex items-center gap-2'>
+                <span className='flex size-6 items-center justify-center rounded-md border border-base-200'>
+                  <Plus className='size-4' />
+                </span>
+                <span className='text-base-content/70'>Add team</span>
+              </button>
+            </li>
+          </ul>
+        </div>
       </SidebarMenuItem>
     </SidebarMenu>
   )

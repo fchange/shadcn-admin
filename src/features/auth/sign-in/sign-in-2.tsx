@@ -1,68 +1,54 @@
 import { Logo } from '@/assets/logo'
-import { cn } from '@/lib/utils'
-import dashboardDark from './assets/dashboard-dark.png'
 import dashboardLight from './assets/dashboard-light.png'
-import { UserAuthForm } from './components/user-auth-form'
 
 export function SignIn2() {
   return (
-    <div className='relative container grid h-svh flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0'>
-      <div className='lg:p-8'>
-        <div className='mx-auto flex w-full flex-col justify-center space-y-2 py-8 sm:w-[480px] sm:p-8'>
-          <div className='mb-4 flex items-center justify-center'>
-            <Logo className='me-2' />
-            <h1 className='text-xl font-medium'>Shadcn Admin</h1>
-          </div>
+    <div className='min-h-svh lg:grid lg:grid-cols-2'>
+      <div className='flex flex-col justify-center px-6 py-12 lg:px-12'>
+        <div className='mb-8 flex items-center gap-2'>
+          <Logo />
+          <span className='text-xl font-semibold'>Shadcn Admin</span>
         </div>
-        <div className='mx-auto flex w-full max-w-sm flex-col justify-center space-y-2'>
-          <div className='flex flex-col space-y-2 text-start'>
-            <h2 className='text-lg font-semibold tracking-tight'>Sign in</h2>
-            <p className='text-sm text-muted-foreground'>
-              Enter your email and password below <br />
-              to log into your account
+        <div className='card bg-base-100 shadow'>
+          <div className='card-body gap-4'>
+            <div>
+              <h2 className='text-lg font-semibold'>Sign in</h2>
+              <p className='text-sm text-base-content/70'>
+                Enter your email and password below to log into your account.
+              </p>
+            </div>
+            <form className='space-y-3'>
+              <input
+                type='email'
+                placeholder='name@example.com'
+                className='input input-bordered w-full'
+              />
+              <input
+                type='password'
+                placeholder='********'
+                className='input input-bordered w-full'
+              />
+              <button type='button' className='btn btn-primary w-full'>
+                Sign in
+              </button>
+            </form>
+            <p className='text-center text-xs text-base-content/60'>
+              By clicking sign in, you agree to our Terms of Service and Privacy
+              Policy.
             </p>
           </div>
-          <UserAuthForm />
-          <p className='px-8 text-center text-sm text-muted-foreground'>
-            By clicking sign in, you agree to our{' '}
-            <a
-              href='/terms'
-              className='underline underline-offset-4 hover:text-primary'
-            >
-              Terms of Service
-            </a>{' '}
-            and{' '}
-            <a
-              href='/privacy'
-              className='underline underline-offset-4 hover:text-primary'
-            >
-              Privacy Policy
-            </a>
-            .
-          </p>
         </div>
       </div>
-
-      <div
-        className={cn(
-          'relative h-full overflow-hidden bg-muted max-lg:hidden',
-          '[&>img]:absolute [&>img]:top-[15%] [&>img]:left-20 [&>img]:h-full [&>img]:w-full [&>img]:object-cover [&>img]:object-top-left [&>img]:select-none'
-        )}
-      >
-        <img
-          src={dashboardLight}
-          className='dark:hidden'
-          width={1024}
-          height={1151}
-          alt='Shadcn-Admin'
-        />
-        <img
-          src={dashboardDark}
-          className='hidden dark:block'
-          width={1024}
-          height={1138}
-          alt='Shadcn-Admin'
-        />
+      <div className='hidden bg-base-200 lg:flex lg:items-center lg:justify-center'>
+        <div className='p-8'>
+          <img
+            src={dashboardLight}
+            width={1024}
+            height={1151}
+            alt='Admin preview'
+            className='rounded-box shadow-lg'
+          />
+        </div>
       </div>
     </div>
   )

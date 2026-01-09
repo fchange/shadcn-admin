@@ -1,7 +1,6 @@
 import { SearchIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useSearch } from '@/context/search-provider'
-import { Button } from './ui/button'
 
 type SearchProps = {
   className?: string
@@ -15,10 +14,10 @@ export function Search({
 }: SearchProps) {
   const { setOpen } = useSearch()
   return (
-    <Button
-      variant='outline'
+    <button
+      type='button'
       className={cn(
-        'group relative h-8 w-full flex-1 justify-start rounded-md bg-muted/25 text-sm font-normal text-muted-foreground shadow-none hover:bg-accent sm:w-40 sm:pe-12 md:flex-none lg:w-52 xl:w-64',
+        'btn btn-outline btn-sm relative h-9 w-full justify-start text-sm font-normal sm:w-40 md:flex-none lg:w-52 xl:w-64',
         className
       )}
       onClick={() => setOpen(true)}
@@ -29,9 +28,9 @@ export function Search({
         size={16}
       />
       <span className='ms-4'>{placeholder}</span>
-      <kbd className='pointer-events-none absolute end-[0.3rem] top-[0.3rem] hidden h-5 items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 select-none group-hover:bg-accent sm:flex'>
+      <kbd className='pointer-events-none absolute end-[0.4rem] top-[0.4rem] hidden h-5 items-center gap-1 rounded border border-base-300 bg-base-200 px-1.5 font-mono text-[10px] font-medium opacity-100 select-none sm:flex'>
         <span className='text-xs'>⌘</span>K
       </kbd>
-    </Button>
+    </button>
   )
 }
