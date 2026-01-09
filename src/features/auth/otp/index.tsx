@@ -1,44 +1,30 @@
-import { Link } from '@tanstack/react-router'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
 import { AuthLayout } from '../auth-layout'
-import { OtpForm } from './components/otp-form'
 
 export function Otp() {
   return (
     <AuthLayout>
-      <Card className='gap-4'>
-        <CardHeader>
-          <CardTitle className='text-base tracking-tight'>
-            Two-factor Authentication
-          </CardTitle>
-          <CardDescription>
-            Please enter the authentication code. <br /> We have sent the
-            authentication code to your email.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <OtpForm />
-        </CardContent>
-        <CardFooter>
-          <p className='px-8 text-center text-sm text-muted-foreground'>
-            Haven't received it?{' '}
-            <Link
-              to='/sign-in'
-              className='underline underline-offset-4 hover:text-primary'
-            >
-              Resend a new code.
-            </Link>
-            .
-          </p>
-        </CardFooter>
-      </Card>
+      <div className='card bg-base-100 shadow'>
+        <div className='card-body gap-4 text-center'>
+          <div>
+            <h2 className='text-lg font-semibold'>Enter OTP</h2>
+            <p className='text-sm text-base-content/70'>
+              We&apos;ve sent a one-time password to your email.
+            </p>
+          </div>
+          <div className='flex justify-center gap-2'>
+            {Array.from({ length: 6 }).map((_, index) => (
+              <input
+                key={index}
+                className='input input-bordered w-10 text-center'
+                placeholder='•'
+              />
+            ))}
+          </div>
+          <button type='button' className='btn btn-primary'>
+            Verify
+          </button>
+        </div>
+      </div>
     </AuthLayout>
   )
 }

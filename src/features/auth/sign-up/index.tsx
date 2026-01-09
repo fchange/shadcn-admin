@@ -1,57 +1,42 @@
 import { Link } from '@tanstack/react-router'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
 import { AuthLayout } from '../auth-layout'
-import { SignUpForm } from './components/sign-up-form'
 
 export function SignUp() {
   return (
     <AuthLayout>
-      <Card className='gap-4'>
-        <CardHeader>
-          <CardTitle className='text-lg tracking-tight'>
-            Create an account
-          </CardTitle>
-          <CardDescription>
-            Enter your email and password to create an account. <br />
-            Already have an account?{' '}
-            <Link
-              to='/sign-in'
-              className='underline underline-offset-4 hover:text-primary'
-            >
-              Sign In
-            </Link>
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <SignUpForm />
-        </CardContent>
-        <CardFooter>
-          <p className='px-8 text-center text-sm text-muted-foreground'>
-            By creating an account, you agree to our{' '}
-            <a
-              href='/terms'
-              className='underline underline-offset-4 hover:text-primary'
-            >
-              Terms of Service
-            </a>{' '}
-            and{' '}
-            <a
-              href='/privacy'
-              className='underline underline-offset-4 hover:text-primary'
-            >
-              Privacy Policy
-            </a>
-            .
+      <div className='card bg-base-100 shadow'>
+        <div className='card-body gap-4'>
+          <div>
+            <h2 className='text-lg font-semibold'>Create an account</h2>
+            <p className='text-sm text-base-content/70'>
+              Enter your email and password to create an account. Already have
+              an account?{' '}
+              <Link to='/sign-in' className='link link-primary'>
+                Sign In
+              </Link>
+            </p>
+          </div>
+          <form className='space-y-3'>
+            <input
+              type='email'
+              placeholder='name@example.com'
+              className='input input-bordered w-full'
+            />
+            <input
+              type='password'
+              placeholder='********'
+              className='input input-bordered w-full'
+            />
+            <button type='button' className='btn btn-primary w-full'>
+              Create account
+            </button>
+          </form>
+          <p className='text-center text-xs text-base-content/60'>
+            By creating an account, you agree to our Terms of Service and
+            Privacy Policy.
           </p>
-        </CardFooter>
-      </Card>
+        </div>
+      </div>
     </AuthLayout>
   )
 }
